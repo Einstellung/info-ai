@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import ReactFlow, { 
+import { 
+  ReactFlow, 
   Background, 
   Controls, 
   MiniMap,
@@ -11,10 +12,10 @@ import ReactFlow, {
   useEdgesState,
   addEdge,
   Connection
-} from 'reactflow'
+} from '@xyflow/react'
 
 // Import ReactFlow styles
-import 'reactflow/dist/style.css'
+import '@xyflow/react/dist/style.css'
 
 // Initial nodes and edges for a new canvas
 const initialNodes: Node[] = [
