@@ -20,7 +20,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    
+    /* Paths */
+    "paths": {
+      "@info-ai/web-support": ["../../packages/web-support/src"],
+      "@info-ai/web-support/*": ["../../packages/web-support/src/*"]
+    }
   },
   "include": ["src"]
 }

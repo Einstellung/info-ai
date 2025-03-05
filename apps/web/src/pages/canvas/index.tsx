@@ -1,99 +1,40 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
-import { 
-  ReactFlow, 
-  Background, 
-  Controls, 
-  MiniMap,
-  Node,
-  Edge,
-  ReactFlowProvider,
-  useNodesState,
-  useEdgesState,
-  addEdge,
-  Connection
-} from '@xyflow/react'
-
-// Import ReactFlow styles
-import '@xyflow/react/dist/style.css'
-
-// Initial nodes and edges for a new canvas
-const initialNodes: Node[] = [
-  {
-    id: 'node-1',
-    type: 'default',
-    position: { x: 250, y: 100 },
-    data: { label: 'Node 1' },
-  },
-  {
-    id: 'node-2',
-    type: 'default',
-    position: { x: 250, y: 300 },
-    data: { label: 'Node 2' },
-  },
-]
-
-const initialEdges: Edge[] = [
-  { id: 'edge-1', source: 'node-1', target: 'node-2', animated: true },
-]
+import { Canvas, useCreateCanvas } from '@info-ai/web-support'
+import { Button, Empty } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 
 /**
- * Canvas Flow component that handles the ReactFlow instance
+ * Canvas page component
+ * Handles routing and displays the appropriate canvas or empty state
  */
-const CanvasFlow: React.FC = () => {
+const CanvasPage: React.FC = () => {
   const { canvasId } = useParams<{ canvasId: string }>()
-  
-  // State for nodes and edges
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
+  const { debouncedCreateCanvas, isCreating } = useCreateCanvas()
 
-  // Handle connections between nodes
-  const onConnect = React.useCallback(
-    (connection: Connection) => {
-      setEdges((eds) => addEdge(connection, eds))
-    },
-    [setEdges]
-  )
+  // If we have a canvasId, render the canvas
+  if (canvasId) {
+    return <Canvas canvasId={canvasId} />
+  }
 
-  // Load canvas data based on canvasId
-  useEffect(() => {
-    // In the future, load canvas data from API or local storage
-    console.log(`Loading canvas with ID: ${canvasId}`)
-    
-    // For now, just use initial data
-    setNodes(initialNodes)
-    setEdges(initialEdges)
-  }, [canvasId, setNodes, setEdges])
-
+  // Otherwise, show an empty state with a button to create a new canvas
   return (
-    <div className="h-full w-full">
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
+    <div className="flex h-full w-full flex-col">
+      <Empty
+        className="m-0 flex w-full flex-grow flex-col items-center justify-center"
+        description="No canvas selected"
       >
-        <Background />
-        <Controls />
-        <MiniMap />
-      </ReactFlow>
+        <Button
+          type="primary"
+          onClick={debouncedCreateCanvas}
+          loading={isCreating}
+          icon={<PlusOutlined />}
+        >
+          Create New Canvas
+        </Button>
+      </Empty>
     </div>
   )
 }
 
-/**
- * Canvas page component that wraps the ReactFlow provider
- */
-const Canvas: React.FC = () => {
-  return (
-    <div className="h-full w-full">
-      <ReactFlowProvider>
-        <CanvasFlow />
-      </ReactFlowProvider>
-    </div>
-  )
-}
-
-export default Canvas
+export default CanvasPage 

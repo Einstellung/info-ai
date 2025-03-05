@@ -1,9 +1,17 @@
 {
-  "name": "web-support",
+  "name": "@info-ai/web-support",
+  "private": true,
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Shared components and utilities for the Info AI web application",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,9 +22,17 @@
     "zustand": "^4.4.0",
     "immer": "^10.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1"
   },
   "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
     "typescript": "^5.0.0"
   }
 }
