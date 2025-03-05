@@ -1,4 +1,3 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Canvas, useCreateCanvas } from '@info-ai/web-support'
 import { Button, Empty } from 'antd'
@@ -8,13 +7,14 @@ import { PlusOutlined } from '@ant-design/icons'
  * Canvas page component
  * Handles routing and displays the appropriate canvas or empty state
  */
-const CanvasPage: React.FC = () => {
+const CanvasPage = () => {
   const { canvasId } = useParams<{ canvasId: string }>()
   const { debouncedCreateCanvas, isCreating } = useCreateCanvas()
 
   // If we have a canvasId, render the canvas
   if (canvasId) {
-    return <Canvas canvasId={canvasId} />
+    // 使用示例数据进行调试
+    return <Canvas canvasId={canvasId} useExample={true} />
   }
 
   // Otherwise, show an empty state with a button to create a new canvas

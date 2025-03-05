@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { Node, Connection, useNodesState, useEdgesState, addEdge, NodeChange, EdgeChange } from '@xyflow/react';
-import { useCanvasStoreShallow } from '../../stores/canvasStore';
+import { useCanvasStoreShallow } from '@info-ai/web-support/stores/canvasStore';
 
 /**
  * Custom hook for canvas operations
