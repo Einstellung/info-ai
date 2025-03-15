@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Typography, Card, Space } from 'antd'
+import { Button, Typography, Card, Space, Divider } from 'antd'
 import { useNavigate } from 'react-router-dom'
 
 const { Title, Paragraph } = Typography
@@ -18,6 +18,11 @@ const Home: React.FC = () => {
     navigate(`/canvas/${canvasId}`)
   }
 
+  // Function to navigate to the split canvas page
+  const goToSplitCanvas = () => {
+    navigate('/split-canvas')
+  }
+
   return (
     <div className="flex h-full flex-col items-center justify-center p-8">
       <div className="max-w-3xl text-center">
@@ -27,9 +32,16 @@ const Home: React.FC = () => {
         </Paragraph>
 
         <Space direction="vertical" size="large" className="mt-8 w-full">
-          <Button type="primary" size="large" onClick={goToNewCanvas}>
-            Create New Canvas
-          </Button>
+          <Space>
+            <Button type="primary" size="large" onClick={goToNewCanvas}>
+              Create New Canvas
+            </Button>
+            <Button size="large" onClick={goToSplitCanvas}>
+              Canvas with Chat
+            </Button>
+          </Space>
+
+          <Divider>Features</Divider>
 
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
             <Card title="Recent Canvases" className="text-left">
@@ -43,6 +55,7 @@ const Home: React.FC = () => {
                 <li>Drag and drop elements onto the canvas</li>
                 <li>Connect nodes to create workflows</li>
                 <li>Use the sidebar tools to add new components</li>
+                <li>Try the new Canvas with Chat feature for life simulations</li>
               </ul>
             </Card>
           </div>

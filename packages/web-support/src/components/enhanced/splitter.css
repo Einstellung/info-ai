@@ -1,0 +1,67 @@
+.enhanced-splitter-wrapper {
+  height: 100%;
+}
+
+.enhanced-splitter {
+  height: 100%;
+}
+
+.enhanced-splitter .ant-splitter-handle {
+  position: relative;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.enhanced-splitter .ant-splitter-handle:hover {
+  background-color: rgba(24, 144, 255, 0.1);
+}
+
+.enhanced-splitter .ant-splitter-handle:active {
+  background-color: rgba(24, 144, 255, 0.2);
+}
+
+/* 水平分割线样式 */
+.enhanced-splitter.horizontal .ant-splitter-handle {
+  width: 12px;
+  margin-left: -6px;
+  cursor: col-resize;
+}
+
+.enhanced-splitter.horizontal .ant-splitter-handle::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 36px;
+  background-color: #f0f0f0;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.enhanced-splitter.horizontal .ant-splitter-handle:hover::before {
+  background-color: #1890ff;
+  box-shadow: 0 0 6px rgba(24, 144, 255, 0.4);
+}
+
+/* 拖拽指示器 */
+.enhanced-splitter.horizontal .ant-splitter-handle::after {
+  content: '⋮';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.enhanced-splitter.horizontal .ant-splitter-handle:hover::after {
+  opacity: 1;
+} 

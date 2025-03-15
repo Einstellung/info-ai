@@ -30,7 +30,7 @@ export const AppRouter = (props: { layout?: React.ComponentType<any> }) => {
           {/* Home route */}
           <Route path="/" element={<Home />} />
           
-          {/* Canvas routes */}
+          {/* Canvas route with integrated chat */}
           <Route path="/canvas/:canvasId" element={<Canvas />} />
           
           {/* Fallback to home for unknown routes */}
